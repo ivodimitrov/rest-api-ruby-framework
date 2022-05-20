@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 include Booking
 
 describe Booking do
