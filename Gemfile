@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'allure-rspec'
+gem 'pry'
 gem 'rake'
 gem 'rest-client'
 gem 'rspec'

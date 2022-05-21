@@ -2,3 +2,5 @@
 .idea
 .ruby-version
 Gemfile.lock
+allure-report
+report
