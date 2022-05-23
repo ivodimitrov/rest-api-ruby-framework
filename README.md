@@ -51,3 +51,6 @@ For more info, please visit: [Allure Framework official documentation](https://d
 ## API documentation for the playground API restful-booker
 
 [detailed API documentation](https://restful-booker.herokuapp.com/apidoc/index.html)
+
+## Builder pattern
+[@FriendlyTester](https://twitter.com/friendlytester) has a [great blog post on what the builder pattern](http://www.thefriendlytester.co.uk/2015/06/an-introduction-to-data-builder-pattern.html) is and it’s context to data creation.
