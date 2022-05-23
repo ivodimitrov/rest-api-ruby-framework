@@ -1,8 +1,11 @@
 require 'allure-rspec'
+require 'faker'
+require 'json'
 require 'pry'
 require 'rspec'
 
 require './api/booking'
+require './payloads/booking_payload'
 
 AllureRspec.configure do |config|
   config.results_directory = 'report/allure-results'

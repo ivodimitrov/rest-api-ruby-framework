@@ -1,9 +1,16 @@
-require: rubocop-rspec
+require:
+  - rubocop-rspec
+  - rubocop-faker
 
 AllCops:
   NewCops: enable
 
+Style/Documentation: { Enabled: false }
 Style/FrozenStringLiteralComment: { Enabled: false }
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
 Style/MixinUsage:
   Exclude:
     - "spec/**/*"
+
+RSpec/ExampleLength: { Enabled: false }

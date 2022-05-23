@@ -1,8 +1,11 @@
 # api-framework
 
+An automated API / web service / integration testing framework
+
 The framework using the following:
 
 - [Allure Report](https://qameta.io/allure-report/) - A flexible lightweight test report tool.
+- [Faker](https://github.com/faker-ruby/faker) - A library for generating fake data such as names, addresses, and phone numbers.
 - [Pry](https://github.com/pry/pry) - A runtime developer console.
 - [Ruby](https://www.ruby-lang.org/en/) - A popular language with testers.
 - [Rake](https://ruby.github.io/rake/) - Allows us to create tasks to manage dependencies and run our checks.
