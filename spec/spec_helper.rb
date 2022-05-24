@@ -4,7 +4,9 @@ require 'json'
 require 'pry'
 require 'rspec'
 
+require './api/authorise'
 require './api/booking'
+require './payloads/authorise_payload'
 require './payloads/booking_payload'
 
 AllureRspec.configure do |config|
