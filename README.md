@@ -5,24 +5,33 @@ An automated API / web service / integration testing framework
 The framework using the following:
 
 - [Allure Report](https://qameta.io/allure-report/) - A flexible lightweight test report tool.
-- [Faker](https://github.com/faker-ruby/faker) - A library for generating fake data such as names, addresses, and phone numbers.
+- [Faker](https://github.com/faker-ruby/faker) - A library for generating fake data such as names, addresses, and phone
+  numbers.
 - [Pry](https://github.com/pry/pry) - A runtime developer console.
 - [Ruby](https://www.ruby-lang.org/en/) - A popular language with testers.
 - [Rake](https://ruby.github.io/rake/) - Allows us to create tasks to manage dependencies and run our checks.
 - [Rspec](https://rspec.info/) - Framework to create and organise our checks.
-- [Rest-client](https://github.com/rest-client/rest-client) - Builds and triggers HTTP requests whilst handling responses to be used in our checks.
+- [Rest-client](https://github.com/rest-client/rest-client) - Builds and triggers HTTP requests whilst handling
+  responses to be used in our checks.
 
-The framework contains three areas:
+The framework contains following areas:
 
-<ul>
-<li>Tests - Surprisingly where the tests themselves are stored. The tests will call functions from the API and Payload areas of the framework and be responsible for asserting responses.</li>
-<li>API - All of the HTTP requests that you want to make are stored here. They are grouped based on the resource you are calling so if there are two resources called Booking and Auth then we create two classes named Booking and Auth. Each function is tied to an individual request that can be called multiple times. This means if the request changes it requires a single change to propagate through the framework.</li>
-<li>Payloads - Payloads that are required for requests and responses are stored in this area. The idea is similar to the API area in that one class is responsible for one payload that may be called multiple times. Again, this means if the payload changes it requires a single change to propagate through the framework.</li>
-</ul>
+- `spec` - stores automated checks. The tests will call functions from the API and Payload areas of the framework and be
+  responsible for asserting responses.
+- `api` - a library of API endpoints which are used in spec to communication
+  with [restful-booker](https://restful-booker.herokuapp.com/). They are grouped based on the resource you are
+  calling so if there are two resources called Booking and Auth then we create two classes named Booking and Auth. Each
+  function is tied to an individual request that can be called multiple times. This means if the request changes it
+  requires a single change to propagate through the framework.
+- `payloads` a suite of builders to create payloads for POST requests. Payloads that are required for requests and
+  responses are stored in this area. The idea is similar to the API
+  area in that one class is responsible for one payload that may be called multiple times. Again, this means if the
+  payload changes it requires a single change to propagate through the framework.
+- `gemfile` / `Rakefile` manages the running of framework and it’s dependencies
 
 ## Tests
 
-Suite of automated checks against the web service [https://restful-booker.herokuapp.com/](https://restful-booker.herokuapp.com/)
+Suite of automated checks against the web service [restful-booker](https://restful-booker.herokuapp.com/)
 
 ## Setup
 
@@ -53,4 +62,7 @@ For more info, please visit: [Allure Framework official documentation](https://d
 [detailed API documentation](https://restful-booker.herokuapp.com/apidoc/index.html)
 
 ## What is the builder pattern?
-[@FriendlyTester](https://twitter.com/friendlytester) has a [great blog post on what the builder pattern](http://www.thefriendlytester.co.uk/2015/06/an-introduction-to-data-builder-pattern.html) is and it’s context to data creation.
+
+[@FriendlyTester](https://twitter.com/friendlytester) has
+a [great blog post on what the builder pattern](http://www.thefriendlytester.co.uk/2015/06/an-introduction-to-data-builder-pattern.html)
+is and it’s context to data creation.
