@@ -24,7 +24,7 @@ module Booking
   end
 
   def delete_booking(id, token)
-    RestClient.delete "#{URL}#{id}", cookie: "token=#{token}"
+    RestClient.delete "#{URL}/#{id}", cookie: "token=#{token}"
   rescue StandardError => e
     e.response
   end

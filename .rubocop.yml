@@ -13,4 +13,6 @@ Style/MixinUsage:
   Exclude:
     - "spec/**/*"
 
+RSpec/DescribeClass: { Enabled: false }
 RSpec/ExampleLength: { Enabled: false }
+
