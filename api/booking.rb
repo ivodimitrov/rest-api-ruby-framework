@@ -3,7 +3,6 @@ require 'rest-client'
 # Restful-booker only has one resource which is a booking resource.
 # Module contains separate functions mapped to different endpoints in restful-booker using rest-client.
 module Booking
-
   URL = 'https://restful-booker.herokuapp.com/booking'.freeze
 
   def all_bookings
@@ -15,7 +14,7 @@ module Booking
   def specific_booking(id, accept)
     RestClient.get "#{URL}/#{id}", accept: accept
   rescue StandardError => e
-          e.response
+    e.response
   end
 
   def create_booking(payload, content_type)
@@ -25,9 +24,8 @@ module Booking
   end
 
   def delete_booking(id, token)
-          RestClient.delete "#{URL}/#{id}", cookie: "token=#{token}"
+    RestClient.delete "#{URL}/#{id}", cookie: "token=#{token}"
   rescue StandardError => e
     e.response
   end
-
 end
