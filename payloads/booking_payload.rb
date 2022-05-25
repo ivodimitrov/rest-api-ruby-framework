@@ -1,4 +1,6 @@
 class BookingPayload
+
+
   attr_accessor :firstname, :lastname, :totalprice, :depositpaid, :checkin, :checkout, :additionalneeds
 
   def initialize(&block)
@@ -6,6 +8,8 @@ class BookingPayload
   end
 
   def to_json(*_args)
+
+
     { firstname: firstname,
       lastname: lastname,
       totalprice: totalprice,
@@ -13,5 +17,9 @@ class BookingPayload
       bookingdates: { checkin: checkin,
                       checkout: checkout },
       additionalneeds: additionalneeds }.to_json
+
+
   end
+
+
 end
