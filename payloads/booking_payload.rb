@@ -1,8 +1,8 @@
 class BookingPayload
   attr_accessor :firstname, :lastname, :totalprice, :depositpaid, :checkin, :checkout, :additionalneeds
 
-  def initialize(&)
-    instance_eval(&) if block_given?
+  def initialize(&block)
+    instance_eval(&block) if block_given?
   end
 
   def to_json(*_args)
