@@ -15,7 +15,7 @@ describe('Restful-booker') do
   end
 
   let(:booking_id) do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
     JSON.parse(response.body)['bookingid']
   end
 
@@ -38,63 +38,62 @@ describe('Restful-booker') do
   end
 
   it('GET /booking filter by name') do
-    Booking.create_booking(payload.to_json, :json)
-    response = Booking.filter_booking_by_name(payload.firstname,
-                                              payload.lastname)
+    Booking.create_booking(payload.to_json)
+    response = Booking.filter_booking_by_name(payload.firstname, payload.lastname)
 
     expect(response.code).to be 200
   end
 
   it('POST /booking should return a 200') do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
 
     expect(response.code).to be 200
   end
 
   it('POST /booking should return first name') do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['firstname']).to eq payload.firstname
   end
 
   it('POST /booking should return last name') do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['lastname']).to eq payload.lastname
   end
 
   it('POST /booking should return total price') do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['totalprice']).to eq payload.totalprice
   end
 
   it('POST /booking should return deposit paid') do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['depositpaid']).to be true
   end
 
   it('POST /booking should return check in') do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['bookingdates']['checkin']).to eq payload.checkin
   end
 
   it('POST /booking should return check out') do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['bookingdates']['checkout']).to eq payload.checkout
   end
 
   it('POST /booking should return additional needs') do
-    response = Booking.create_booking(payload.to_json, :json)
+    response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['additionalneeds']).to eq payload.additionalneeds
   end
 
   it('DELETE /booking/{id} should return a 201') do
-    created_response = Booking.create_booking(payload.to_json, :json)
+    created_response = Booking.create_booking(payload.to_json)
 
     auth_payload = AuthorisePayload.new do
       self.username = 'admin'

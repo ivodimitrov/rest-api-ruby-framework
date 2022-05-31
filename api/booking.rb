@@ -17,7 +17,7 @@ module Booking
     e.response
   end
 
-  def create_booking(payload, content_type)
+  def create_booking(payload, content_type: :json)
     RestClient.post URL, payload, accept: :json, content_type: content_type
   rescue StandardError => e
     e.response
