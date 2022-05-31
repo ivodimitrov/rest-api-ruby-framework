@@ -23,6 +23,12 @@ module Booking
     e.response
   end
 
+  def filter_booking_by_name(firstname, lastname)
+    RestClient.get "#{URL}?firstname=#{firstname}&lastname=#{lastname}"
+  rescue StandardError => e
+    e.response
+  end
+
   def delete_booking(id, token)
     RestClient.delete "#{URL}/#{id}", cookie: "token=#{token}"
   rescue StandardError => e

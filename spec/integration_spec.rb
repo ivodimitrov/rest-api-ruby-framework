@@ -37,6 +37,14 @@ describe('Restful-booker') do
     expect(response.code).to be 418
   end
 
+  it('GET /booking filter by name') do
+    Booking.create_booking(payload.to_json, :json)
+    response = Booking.filter_booking_by_name(payload.firstname,
+                                              payload.lastname)
+
+    expect(response.code).to be 200
+  end
+
   it('POST /booking should return a 200') do
     response = Booking.create_booking(payload.to_json, :json)
 
