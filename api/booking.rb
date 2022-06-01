@@ -34,4 +34,18 @@ module Booking
   rescue StandardError => e
     e.response
   end
+
+  def update_booking(id, payload, token)
+    RestClient.put "#{URL}/#{id}",
+                   payload,
+                   content_type: :json,
+                   cookie: "token=#{token}"
+  end
+
+  def partial_update_booking(id, payload, token)
+    RestClient.patch "#{URL}/#{id}",
+                     payload,
+                     content_type: :json,
+                     cookie: "token=#{token}"
+  end
 end
