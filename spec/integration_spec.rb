@@ -14,6 +14,32 @@ describe('Restful-booker') do
     end
   end
 
+  let(:second_payload) do
+    BookingPayload.new do
+      self.firstname = Faker::Name.first_name
+      self.lastname = Faker::Name.last_name
+      self.totalprice = Faker::Number.number(digits: 3)
+      self.depositpaid = true
+      self.checkin = '2010-11-11'
+      self.checkout = '2010-12-11'
+      self.additionalneeds = 'Breakfast'
+    end
+  end
+
+  let(:partial_payload) do
+    BookingPayload.new do
+      self.firstname = Faker::Name.first_name
+      self.lastname = Faker::Name.last_name
+    end
+  end
+
+  let(:auth_payload) do
+    AuthorisePayload.new do
+      self.username = 'admin'
+      self.password = 'password123'
+    end
+  end
+
   let(:booking_id) do
     response = Booking.create_booking(payload.to_json)
     JSON.parse(response.body)['bookingid']
@@ -74,13 +100,13 @@ describe('Restful-booker') do
     expect(JSON.parse(response.body)['booking']['depositpaid']).to be true
   end
 
-  it('POST /booking should return check in') do
+  it('POST /booking should return check-in date') do
     response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['bookingdates']['checkin']).to eq payload.checkin
   end
 
-  it('POST /booking should return check out') do
+  it('POST /booking should return check-out date') do
     response = Booking.create_booking(payload.to_json)
 
     expect(JSON.parse(response.body)['booking']['bookingdates']['checkout']).to eq payload.checkout
@@ -94,17 +120,40 @@ describe('Restful-booker') do
 
   it('DELETE /booking/{id} should return a 201') do
     created_response = Booking.create_booking(payload.to_json)
-
-    auth_payload = AuthorisePayload.new do
-      self.username = 'admin'
-      self.password = 'password123'
-    end
-
     auth_response = Authorise.post_credentials(auth_payload.to_json)
-
     delete_response = Booking.delete_booking(JSON.parse(created_response.body)['bookingid'],
                                              JSON.parse(auth_response.body)['token'])
 
     expect(delete_response.code).to be 201
+  end
+
+  it('PUT /booking/{id} updating a current booking should return a 200') do
+    created_response = Booking.create_booking(payload.to_json)
+    auth_response = Authorise.post_credentials(auth_payload.to_json)
+    update_response = Booking.update_booking(JSON.parse(created_response.body)['bookingid'],
+                                             second_payload.to_json,
+                                             JSON.parse(auth_response.body)['token'])
+
+    expect(update_response.code).to be 200
+  end
+
+  it('PUT /booking/{id} updating a current booking should return an updated payload') do
+    created_response = Booking.create_booking(payload.to_json)
+    auth_response = Authorise.post_credentials(auth_payload.to_json)
+    update_response = Booking.update_booking(JSON.parse(created_response.body)['bookingid'],
+                                             second_payload.to_json,
+                                             JSON.parse(auth_response.body)['token'])
+
+    expect(update_response.body).to eq second_payload.to_json
+  end
+
+  it('PATCH /booking/{id} partial updating a current booking should return a 200') do
+    created_response = Booking.create_booking(payload.to_json)
+    auth_response = Authorise.post_credentials(auth_payload.to_json)
+    update_response = Booking.partial_update_booking(JSON.parse(created_response.body)['bookingid'],
+                                                     partial_payload.to_json,
+                                                     JSON.parse(auth_response.body)['token'])
+
+    expect(update_response.code).to be 200
   end
 end
