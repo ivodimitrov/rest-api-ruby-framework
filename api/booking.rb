@@ -17,8 +17,14 @@ module Booking
     e.response
   end
 
-  def create_booking(payload, content_type)
+  def create_booking(payload, content_type: :json)
     RestClient.post URL, payload, accept: :json, content_type: content_type
+  rescue StandardError => e
+    e.response
+  end
+
+  def filter_booking_by_name(firstname, lastname)
+    RestClient.get "#{URL}?firstname=#{firstname}&lastname=#{lastname}"
   rescue StandardError => e
     e.response
   end
@@ -27,5 +33,19 @@ module Booking
     RestClient.delete "#{URL}/#{id}", cookie: "token=#{token}"
   rescue StandardError => e
     e.response
+  end
+
+  def update_booking(id, payload, token)
+    RestClient.put "#{URL}/#{id}",
+                   payload,
+                   content_type: :json,
+                   cookie: "token=#{token}"
+  end
+
+  def partial_update_booking(id, payload, token)
+    RestClient.patch "#{URL}/#{id}",
+                     payload,
+                     content_type: :json,
+                     cookie: "token=#{token}"
   end
 end
