@@ -68,7 +68,7 @@ describe '[GET] Restful-booker' do
   end
 
   it 'responds with a 200 when searching for name, checkin and checkout date', tms: '211' do
-    response = Booking.send_get_request query: "/booking?firstname=#{payload.firstname}&lastname="\
+    response = Booking.send_get_request query: "/booking?firstname=#{payload.firstname}&lastname=" \
                                                "#{payload.lastname}&#{payload.checkin}&checkout=#{payload.checkout}"
 
     expect(response.code).to be 200
