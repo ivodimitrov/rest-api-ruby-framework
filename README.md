@@ -8,11 +8,11 @@ The framework using the following:
 - [Faker](https://github.com/faker-ruby/faker) - A library for generating fake data such as names, addresses, and phone
   numbers.
 - [Pry](https://github.com/pry/pry) - A runtime developer console.
-- [Ruby](https://www.ruby-lang.org/en/) - A popular language with testers.
 - [Rake](https://ruby.github.io/rake/) - Allows us to create tasks to manage dependencies and run our checks.
-- [Rspec](https://rspec.info/) - Framework to create and organise our checks.
 - [Rest-client](https://github.com/rest-client/rest-client) - Builds and triggers HTTP requests whilst handling
+- [Rspec](https://rspec.info/) - Framework to create and organise our checks.
   responses to be used in our checks.
+- [Ruby](https://www.ruby-lang.org/en/) - A popular language with testers.
 
 The framework contains following areas:
 
@@ -45,7 +45,7 @@ bundle install
 
 ## Configurations
 
-`ENV_URL` -> defaults to [https://restful-booker.herokuapp.com]() , any valid url can be passed to set the target
+`ENV_URL` -> defaults to [https://restful-booker.herokuapp.com](), any valid url can be passed to set the target
 environment.
 
 ## Executing tests
