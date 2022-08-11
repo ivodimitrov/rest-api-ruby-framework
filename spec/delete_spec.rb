@@ -11,7 +11,7 @@ describe '[DELETE] Restful-booker' do
   end
 
   it 'responds with a 405 when deleting a non existing booking', tms: '102' do
-    response = Booking.delete_booking(id: 1_234_567_890,
+    response = Booking.delete_booking(id: Faker::Number.number(digits: 10),
                                       token: BaseSteps.auth_response_token)
 
     expect(response.code).to be 405
@@ -25,7 +25,10 @@ describe '[DELETE] Restful-booker' do
 
   it 'responds with a 403 when not authorised', tms: '104' do
     response = Booking.delete_booking(id: BaseSteps.booking_id,
-                                      token: BaseSteps.auth_response_token(username: 'nmida', password: '321drowssap'))
+                                      token: BaseSteps.auth_response_token(
+                                        username: Faker::Internet.username(specifier: 5..10),
+                                        password: Faker::Internet.password
+                                      ))
 
     expect(response.code).to be 403
   end

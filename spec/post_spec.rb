@@ -43,7 +43,10 @@ describe '[POST]' do
     end
 
     it 'responds with a 500 error when a bad payload is sent', tms: '309' do
-      bad_payload = { lastname: 'Brown', totalprice: 111, depositpaid: true, additionalneeds: 'Breakfast' }
+      bad_payload = { lastname: Faker::Name.first_name,
+                      totalprice: Faker::Number.decimal(r_digits: 2),
+                      depositpaid: Faker::Boolean.boolean,
+                      additionalneeds: Faker::Food.description }
       response = Booking.create_booking(bad_payload.to_json)
 
       expect(response.code).to be 500
@@ -78,7 +81,8 @@ describe '[POST]' do
     end
 
     it 'responds with a 200 and a message informing of login failed when POSTing invalid credential', tms: '314' do
-      response = BaseSteps.auth_response username: 'nimda', password: '321drowssap'
+      response = BaseSteps.auth_response username: Faker::Internet.username(specifier: 5..10),
+                                         password: Faker::Internet.password
 
       expect(response.code).to be 200
       expect(response.body).to include('reason').and include('Bad credentials')

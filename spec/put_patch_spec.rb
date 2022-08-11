@@ -35,13 +35,14 @@ describe '[PUT/PATCH] Restful-booker' do
   it 'responds with a 403 when not authorised', tms: '404' do
     response = Booking.update_booking(id: BaseSteps.booking_id,
                                       payload: second_payload,
-                                      token: BaseSteps.auth_response_token(username: 'nmida', password: '321drowssap'))
+                                      token: BaseSteps.auth_response_token(username: Faker::Internet.username,
+                                                                           password: Faker::Internet.password))
 
     expect(response.code).to be 403
   end
 
   it 'responds with a 405 when attempting to update a booking that does not exist', tms: '405' do
-    response = Booking.update_booking(id: 1_234_567_890,
+    response = Booking.update_booking(id: Faker::Number.number(digits: 10),
                                       payload: second_payload,
                                       token: BaseSteps.auth_response_token)
 
