@@ -1,5 +1,9 @@
 # api-framework
 
+[![Workflow with Ruby & Rake](https://github.com/ivodimitrov/api-framework/actions/workflows/ruby.yml/badge.svg)](https://github.com/ivodimitrov/api-framework/actions/workflows/ruby.yml)
+
+## Don't forget to give a :star: to make the project popular.
+
 An automated API / web service / integration testing framework
 
 The framework using the following:
@@ -12,6 +16,7 @@ The framework using the following:
 - [Rest-client](https://github.com/rest-client/rest-client) - Builds and triggers HTTP requests whilst handling
 - [Rspec](https://rspec.info/) - Framework to create and organise our checks.
   responses to be used in our checks.
+- [Rubocop](https://rubocop.org/) - RuboCop is a Ruby static code analyzer (a.k.a. linter ) and code formatter..
 - [Ruby](https://www.ruby-lang.org/en/) - A popular language with testers.
 
 The framework contains following areas:
@@ -27,7 +32,8 @@ The framework contains following areas:
   responses are stored in this area. The idea is similar to the API
   area in that one class is responsible for one payload that may be called multiple times. Again, this means if the
   payload changes it requires a single change to propagate through the framework.
-- `gemfile` / `Rakefile` manages the running of framework and it’s dependencies
+- `gemfile` / `Rakefile` manages the running of framework and it’s dependencies.
+- `steps` - Preconditions and/or multi-action test steps.
 
 ## Tests
 
@@ -37,7 +43,7 @@ Suite of automated checks against the web service [restful-booker](https://restf
 
 1. Clone this repository.
 
-2. Run the following steps that install the necessary dependencies. [Bundler](https://bundler.io/) is required.
+2. Run the following step that installs the necessary dependencies. [Bundler](https://bundler.io/) is required.
 
 ```shell
 bundle install
