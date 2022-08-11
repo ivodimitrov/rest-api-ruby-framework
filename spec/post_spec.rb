@@ -49,10 +49,10 @@ describe '[POST]' do
       expect(response.code).to be 500
     end
 
-    it 'responds with the correct assigned booking id when multiple payloads are sent', tms: '310' do
+    it 'responds with the different booking id when multiple payloads are sent', tms: '310' do
       init_booking_id = BaseSteps.booking_id
 
-      expect(BaseSteps.booking_id).to eq init_booking_id + 1
+      expect(BaseSteps.booking_id).not_to eq init_booking_id
     end
 
     it 'responds with a 200 when a payload with extra parameter is sent', tms: '311' do
