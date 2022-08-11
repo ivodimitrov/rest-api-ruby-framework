@@ -26,6 +26,11 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
+  config.around do |example|
+    puts "    Running #{example.full_description} in parallel thread: #{ENV['TEST_ENV_NUMBER'].to_i}"
+    example.run
+  end
+
   config.after do |example|
     Allure.step name: example.metadata[:full_description]
     Allure.add_attachment(
