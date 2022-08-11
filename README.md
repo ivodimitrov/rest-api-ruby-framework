@@ -1,6 +1,7 @@
 # api-framework
 
-[![Workflow with Ruby & Rake](https://github.com/ivodimitrov/api-framework/actions/workflows/ruby.yml/badge.svg)](https://github.com/ivodimitrov/api-framework/actions/workflows/ruby.yml)
+[![Tests](https://github.com/ivodimitrov/api-framework/actions/workflows/tests.yml/badge.svg)](https://github.com/ivodimitrov/api-framework/actions/workflows/tests.yml)
+[![Parallel Tests](https://github.com/ivodimitrov/api-framework/actions/workflows/parallel_tests.yml/badge.svg)](https://github.com/ivodimitrov/api-framework/actions/workflows/parallel_tests.yml)
 
 ## Don't forget to give a :star: to make the project popular.
 
@@ -11,6 +12,8 @@ The framework using the following:
 - [Allure Report](https://qameta.io/allure-report/) - A flexible lightweight test report tool.
 - [Faker](https://github.com/faker-ruby/faker) - A library for generating fake data such as names, addresses, and phone
   numbers.
+- [Parallel tests](https://github.com/grosser/parallel_tests) - Speed up RSpec by running parallel on multiple CPU
+  cores.
 - [Pry](https://github.com/pry/pry) - A runtime developer console.
 - [Rake](https://ruby.github.io/rake/) - Allows us to create tasks to manage dependencies and run our checks.
 - [Rest-client](https://github.com/rest-client/rest-client) - Builds and triggers HTTP requests whilst handling
@@ -67,6 +70,12 @@ quotes: `tms:'101'` )
 
 ```shell
 bundle exec rspec --tag tms:101
+```
+
+Run tests in parallel:
+
+```shell
+bundle exec parallel_rspec
 ```
 
 ## Generating local HTML Allure report

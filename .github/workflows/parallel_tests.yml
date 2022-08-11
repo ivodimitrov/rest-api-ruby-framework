@@ -2,10 +2,9 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
-# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with rspec and parallel_tests
 
-name: Tests
+name: Parallel Tests
 
 on:
   push:
@@ -22,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.1.2']
+        ruby-version: [ '3.1.2' ]
 
     steps:
       - uses: actions/checkout@v3
@@ -34,7 +33,5 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - name: Run tests
-        run: bundle exec rake
-      - name: Run RuboCop
-        run: bundle exec rubocop
+      - name: Run tests in parallel
+        run: bundle exec parallel_rspec
